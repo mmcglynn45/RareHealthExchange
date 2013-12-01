@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142A95761843DAB500E3D6B2 /* Microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 142A95721843DAB500E3D6B2 /* Microphone.png */; };
+		142A957C1843DB7400E3D6B2 /* Patients.png in Resources */ = {isa = PBXBuildFile; fileRef = 142A95781843DB7400E3D6B2 /* Patients.png */; };
+		142A957D1843DB7400E3D6B2 /* SearchFunction.png in Resources */ = {isa = PBXBuildFile; fileRef = 142A95791843DB7400E3D6B2 /* SearchFunction.png */; };
+		142A957E1843DB7400E3D6B2 /* Earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 142A957A1843DB7400E3D6B2 /* Earth.png */; };
+		142A957F1843DB7400E3D6B2 /* Logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 142A957B1843DB7400E3D6B2 /* Logout.png */; };
 		14534C95183597210004AEF4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14534C94183597210004AEF4 /* UIKit.framework */; };
 		14534C97183597210004AEF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14534C96183597210004AEF4 /* Foundation.framework */; };
 		14534C99183597210004AEF4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14534C98183597210004AEF4 /* CoreGraphics.framework */; };
@@ -29,6 +34,8 @@
 		14534CC9183597210004AEF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14534C96183597210004AEF4 /* Foundation.framework */; };
 		14534CD1183597210004AEF4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14534CCF183597210004AEF4 /* InfoPlist.strings */; };
 		14534CD4183597210004AEF4 /* RareHealthExchangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14534CD3183597210004AEF4 /* RareHealthExchangeTests.m */; };
+		14EAFD6E1843BECC00EA68EA /* RHELogo.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 14EAFD6D1843BECC00EA68EA /* RHELogo.PNG */; };
+		14EAFD721843C2D300EA68EA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EAFD711843C2D300EA68EA /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +49,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		142A95721843DAB500E3D6B2 /* Microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone.png; sourceTree = "<group>"; };
+		142A95781843DB7400E3D6B2 /* Patients.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Patients.png; path = ../Patients.png; sourceTree = "<group>"; };
+		142A95791843DB7400E3D6B2 /* SearchFunction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SearchFunction.png; path = ../SearchFunction.png; sourceTree = "<group>"; };
+		142A957A1843DB7400E3D6B2 /* Earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Earth.png; path = ../Earth.png; sourceTree = "<group>"; };
+		142A957B1843DB7400E3D6B2 /* Logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logout.png; path = ../Logout.png; sourceTree = "<group>"; };
 		14534C90183597210004AEF4 /* RareHealthExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RareHealthExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14534C94183597210004AEF4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		14534C96183597210004AEF4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +83,9 @@
 		14534CD0183597210004AEF4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		14534CD2183597210004AEF4 /* RareHealthExchangeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RareHealthExchangeTests.h; sourceTree = "<group>"; };
 		14534CD3183597210004AEF4 /* RareHealthExchangeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RareHealthExchangeTests.m; sourceTree = "<group>"; };
+		14EAFD6D1843BECC00EA68EA /* RHELogo.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RHELogo.PNG; path = /Volumes/BOOTCAMP/Users/Sean/Desktop/RHELogo.PNG; sourceTree = "<absolute>"; };
+		14EAFD701843C2D300EA68EA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		14EAFD711843C2D300EA68EA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +148,8 @@
 				14534CA3183597210004AEF4 /* AppDelegate.h */,
 				14534CA4183597210004AEF4 /* AppDelegate.m */,
 				14534CAC183597210004AEF4 /* MainStoryboard_iPhone.storyboard */,
+				14EAFD701843C2D300EA68EA /* LoginViewController.h */,
+				14EAFD711843C2D300EA68EA /* LoginViewController.m */,
 				14534CAF183597210004AEF4 /* MainStoryboard_iPad.storyboard */,
 				14534CB2183597210004AEF4 /* FirstViewController.h */,
 				14534CB3183597210004AEF4 /* FirstViewController.m */,
@@ -150,6 +167,12 @@
 		14534C9B183597210004AEF4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				14EAFD6D1843BECC00EA68EA /* RHELogo.PNG */,
+				142A95781843DB7400E3D6B2 /* Patients.png */,
+				142A95791843DB7400E3D6B2 /* SearchFunction.png */,
+				142A957A1843DB7400E3D6B2 /* Earth.png */,
+				142A957B1843DB7400E3D6B2 /* Logout.png */,
+				142A95721843DAB500E3D6B2 /* Microphone.png */,
 				14534C9C183597210004AEF4 /* RareHealthExchange-Info.plist */,
 				14534C9D183597210004AEF4 /* InfoPlist.strings */,
 				14534CA0183597210004AEF4 /* main.m */,
@@ -261,6 +284,12 @@
 				14534CB8183597210004AEF4 /* first@2x.png in Resources */,
 				14534CBD183597210004AEF4 /* second.png in Resources */,
 				14534CBF183597210004AEF4 /* second@2x.png in Resources */,
+				14EAFD6E1843BECC00EA68EA /* RHELogo.PNG in Resources */,
+				142A95761843DAB500E3D6B2 /* Microphone.png in Resources */,
+				142A957C1843DB7400E3D6B2 /* Patients.png in Resources */,
+				142A957D1843DB7400E3D6B2 /* SearchFunction.png in Resources */,
+				142A957E1843DB7400E3D6B2 /* Earth.png in Resources */,
+				142A957F1843DB7400E3D6B2 /* Logout.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +328,7 @@
 				14534CA5183597210004AEF4 /* AppDelegate.m in Sources */,
 				14534CB4183597210004AEF4 /* FirstViewController.m in Sources */,
 				14534CBB183597210004AEF4 /* SecondViewController.m in Sources */,
+				14EAFD721843C2D300EA68EA /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +513,7 @@
 				14534CD9183597210004AEF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		14534CDA183597210004AEF4 /* Build configuration list for PBXNativeTarget "RareHealthExchangeTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +522,7 @@
 				14534CDC183597210004AEF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
