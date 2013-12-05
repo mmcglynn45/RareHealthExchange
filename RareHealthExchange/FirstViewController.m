@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *ResultsTable;
 @property (weak, nonatomic) IBOutlet UITextField *SearchText;
 @property (weak, nonatomic) IBOutlet UILabel *PromptLabel;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIButton *AddDate;
 @property NSMutableArray *testArray;
 @property NSMutableDictionary *patientDictionary;
 @property NSMutableDictionary *visitDates;
@@ -136,6 +138,7 @@
         self.testArray = [NSMutableArray new];
         self.SearchText.text = @"";
         self.PromptLabel.text = @"Select a Visit Date";
+        self.AddDate.hidden = false;
         [[self SearchText]resignFirstResponder];
         [[self SearchText]setHidden:YES];
         self.mode = 2;
@@ -143,6 +146,7 @@
         self.myPatientID = [self.patientDictionary valueForKey:selectedCell.textLabel.text];
         [self postPatientID:[self.patientDictionary valueForKey:selectedCell.textLabel.text]];
     }else if (self.mode ==2){
+        self.AddDate.hidden = true;
         self.testArray = [NSMutableArray new];
         [self postVisitDate:selectedCell.textLabel.text];
         NSString *newPromptLabel = @"Please select a disease for patient ";
@@ -226,6 +230,42 @@
     [self.testArray addObjectsFromArray:[self.symptomSeverityDescriptionAndID keysSortedByValueUsingSelector:@selector(localizedStandardCompare:)]];
     [self.ResultsTable reloadData];
     
+    
+}
+- (IBAction)dateSelected:(id)sender {
+    //NSLog(@"%@",self.AddDate.titleLabel.text);
+    if (self.ResultsTable.hidden==false) {
+        self.datePicker.hidden = false;
+        self.ResultsTable.hidden = true;
+    }else{
+        self.datePicker.hidden = true;
+        self.AddDate.titleLabel.text = @"Add Date";
+        self.AddDate.hidden = true;
+        self.ResultsTable.hidden = false;
+        NSString *dateToBePosted;
+        //dateToBePosted = [self.datePicker.date descriptionWithLocale:nil];
+        //NSRange range;
+        //range = [dateToBePosted rangeOfString:@" "];
+        //dateToBePosted = [dateToBePosted substringToIndex:range.location];
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"MM/dd/yyyy"];
+        
+       dateToBePosted = [NSString stringWithFormat:@"%@",
+                       [df stringFromDate:self.datePicker.date]];
+        NSLog(@"%@",dateToBePosted);
+        NSString *bodyData = [NSString stringWithFormat:@"patientID=%@&date=%@",self.myPatientID,dateToBePosted];
+        NSString *url = [NSString stringWithFormat:@"https://184.72.98.28/patients.php?id=%@",dateToBePosted];
+        NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+        // Set the request's content type to application/x-www-form-urlencoded
+        [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        // Designate the request a POST request and specify its body data
+        [postRequest setHTTPMethod:@"POST"];
+        [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
+        NSError *errorReturned = nil;
+        NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+        [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&theResponse error:&errorReturned];
+        [self postPatientID:self.myPatientID];
+    }
     
 }
 

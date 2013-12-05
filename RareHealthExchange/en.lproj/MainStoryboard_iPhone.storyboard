@@ -38,15 +38,15 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="zDh-FN-e49"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" red="0.58473996350000002" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P71-lc-uqS">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="1Tu-y0-7HC"/>
-                                    <constraint firstAttribute="width" constant="292" id="Z21-OC-3Fc"/>
+                                    <constraint firstAttribute="width" constant="292" id="2p9-WN-cTu"/>
                                 </constraints>
                             </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TE8-5O-OEn">
@@ -81,35 +81,86 @@
                                     <action selector="backPress:" destination="2" eventType="touchUpInside" id="G0V-si-8mK"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h0-lP-cao">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Add Date">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dateSelected:" destination="2" eventType="touchUpInside" id="Xmo-vm-Gad"/>
+                                </connections>
+                            </button>
+                            <datePicker hidden="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="gfs-Zt-EED">
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.74999999999999978" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="N5B-NX-PVh"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="407953662.19777697">
+                                    <!--2013-12-05 16:27:42 +0000-->
+                                </date>
+                                <timeZone key="timeZone" name="America/Los_Angeles">
+                                    <mutableData key="data">
+VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
+y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
+5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
+8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
+AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
+DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
+HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
+KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
+OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
+Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
+VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
+Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
+cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
+f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
+</mutableData>
+                                </timeZone>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.14509804546833038" blue="0.31372550129890442" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="wnL-Uw-PDN" firstAttribute="centerX" secondItem="jup-Gb-K10" secondAttribute="centerX" type="default" id="121-m5-lxm"/>
+                            <constraint firstItem="jup-Gb-K10" firstAttribute="top" secondItem="16" secondAttribute="top" constant="-5" id="1hn-ve-odT"/>
+                            <constraint firstItem="5BK-Af-bpG" firstAttribute="top" secondItem="Cyn-uf-kW8" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="AE5-qA-4fg"/>
+                            <constraint firstItem="gfs-Zt-EED" firstAttribute="top" secondItem="16" secondAttribute="top" type="default" id="CmE-IA-tfc"/>
+                            <constraint firstItem="9h0-lP-cao" firstAttribute="baseline" secondItem="z5e-yz-j1S" secondAttribute="baseline" type="default" id="D5e-pP-Vdh"/>
+                            <constraint firstItem="5BK-Af-bpG" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="EgZ-lE-SIY"/>
+                            <constraint firstItem="9h0-lP-cao" firstAttribute="baseline" secondItem="TE8-5O-OEn" secondAttribute="baseline" type="default" id="GWf-q3-5CL"/>
                             <constraint firstItem="Cyn-uf-kW8" firstAttribute="top" secondItem="16" secondAttribute="top" constant="89" id="HFg-Us-Tqm"/>
                             <constraint firstAttribute="trailing" secondItem="Cyn-uf-kW8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="HLh-bY-1bP"/>
+                            <constraint firstAttribute="trailing" secondItem="9h0-lP-cao" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="L6p-oa-k8q"/>
                             <constraint firstAttribute="trailing" secondItem="z5e-yz-j1S" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Nx8-iQ-brd"/>
+                            <constraint firstAttribute="trailing" secondItem="5BK-Af-bpG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Pge-li-Df9"/>
                             <constraint firstItem="wnL-Uw-PDN" firstAttribute="top" secondItem="16" secondAttribute="top" constant="55" id="RSB-X7-8fI"/>
-                            <constraint firstItem="P71-lc-uqS" firstAttribute="top" secondItem="5BK-Af-bpG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="V7b-bc-ljQ"/>
-                            <constraint firstItem="TE8-5O-OEn" firstAttribute="top" secondItem="5BK-Af-bpG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="W6k-MV-jaO"/>
-                            <constraint firstAttribute="trailing" secondItem="5BK-Af-bpG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="c6M-hA-dsc"/>
-                            <constraint firstItem="z5e-yz-j1S" firstAttribute="baseline" secondItem="TE8-5O-OEn" secondAttribute="baseline" type="default" id="dQn-7f-1dD"/>
+                            <constraint firstItem="TE8-5O-OEn" firstAttribute="top" secondItem="5BK-Af-bpG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="fA7-9e-vsb"/>
+                            <constraint firstItem="gfs-Zt-EED" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="fFo-B6-FNa"/>
                             <constraint firstItem="Cyn-uf-kW8" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gkB-yR-9il"/>
-                            <constraint firstItem="5BK-Af-bpG" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="kHi-Pc-gbb"/>
                             <constraint firstItem="TE8-5O-OEn" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="oV2-DR-Xot"/>
                             <constraint firstAttribute="trailing" secondItem="wnL-Uw-PDN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="qn8-9g-0Pi"/>
-                            <constraint firstItem="jup-Gb-K10" firstAttribute="top" secondItem="16" secondAttribute="top" constant="-5" id="tZ3-ez-aN5"/>
+                            <constraint firstItem="P71-lc-uqS" firstAttribute="top" secondItem="5BK-Af-bpG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qoq-mS-4Cm"/>
+                            <constraint firstItem="gfs-Zt-EED" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="uKx-Lc-R3T"/>
                             <constraint firstItem="wnL-Uw-PDN" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="vhc-Il-JiO"/>
                             <constraint firstAttribute="trailing" secondItem="P71-lc-uqS" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="xEa-yX-cgR"/>
-                            <constraint firstItem="5BK-Af-bpG" firstAttribute="top" secondItem="Cyn-uf-kW8" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="z67-c5-5Tp"/>
+                            <constraint firstItem="9h0-lP-cao" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zfe-5F-cA9"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Record" image="SearchFunction.png" id="7"/>
                     <connections>
+                        <outlet property="AddDate" destination="9h0-lP-cao" id="or3-Vk-00F"/>
                         <outlet property="BackButton" destination="z5e-yz-j1S" id="B6i-PP-jaU"/>
                         <outlet property="PatientWebView" destination="P71-lc-uqS" id="tX5-09-ztp"/>
                         <outlet property="PromptLabel" destination="wnL-Uw-PDN" id="qrr-cc-Upq"/>
                         <outlet property="ResultsTable" destination="5BK-Af-bpG" id="kQD-lN-Bf1"/>
                         <outlet property="SearchText" destination="Cyn-uf-kW8" id="Qx2-KI-5iM"/>
+                        <outlet property="datePicker" destination="gfs-Zt-EED" id="Fu1-H5-gQ9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
@@ -323,12 +374,13 @@
                 <relationship kind="action" name="NewTextChange:"/>
                 <relationship kind="action" name="StartOver:"/>
                 <relationship kind="action" name="TextChange:"/>
-                <relationship kind="action" name="backPress:"/>
+                <relationship kind="outlet" name="AddDate" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="BackButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="PatientWebView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="PromptLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="ResultsTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="SearchText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
             </relationships>
         </class>
         <class className="LoginViewController" superclassName="UIViewController">
