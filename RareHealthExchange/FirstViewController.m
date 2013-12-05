@@ -19,6 +19,7 @@
 @property NSMutableDictionary *symptomNameAndID;
 @property NSMutableDictionary *symptomSeverityDescriptionAndID;
 @property NSMutableDictionary *symptomNameAndSeverityDescriptions;
+@property NSMutableDictionary *symptomSeverityIDForSymptomID;
 @property (weak, nonatomic) IBOutlet UIWebView *PatientWebView;
 
 @property bool Authenticated;
@@ -32,9 +33,13 @@
 @property NSString *myVisitID;
 @property NSString *myDiseaseName;
 @property NSString *myDiseaseID;
+@property NSArray *symptomArray;
+@property NSArray *jsonSymptomData;
+@property NSUInteger currentSymptomIndex;
 @property int mode;
 
 @property NSString *pageHTML;
+@property (weak, nonatomic) IBOutlet UIButton *BackButton;
 
 @end
 
@@ -48,6 +53,7 @@
 
 - (void)viewDidLoad
 {
+    self.BackButton.hidden = true;
     self.mode = 0;
     self.testArray = [NSMutableArray new];
     self.patientDictionary = [NSMutableDictionary new];
@@ -56,6 +62,9 @@
     self.symptomNameAndID = [NSMutableDictionary new];
     self.symptomSeverityDescriptionAndID = [NSMutableDictionary new];
     self.symptomNameAndSeverityDescriptions = [NSMutableDictionary new];
+    self.symptomSeverityIDForSymptomID = [NSMutableDictionary new];
+    self.symptomArray = [NSArray new];
+    self.jsonSymptomData = [NSArray new];
     self.ResultsTable.delegate = self;
     self.ResultsTable.dataSource = self;
     [self.ResultsTable reloadData];
@@ -69,6 +78,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
    
+}
+- (IBAction)StartOver:(id)sender {
+    [self startFresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,7 +147,7 @@
         [self postVisitDate:selectedCell.textLabel.text];
         NSString *newPromptLabel = @"Please select a disease for patient ";
         newPromptLabel = [newPromptLabel stringByAppendingString:self.myPatientName];
-        newPromptLabel = [newPromptLabel stringByAppendingString:@" on visit date"];
+        newPromptLabel = [newPromptLabel stringByAppendingString:@" on visit date "];
         newPromptLabel = [newPromptLabel stringByAppendingString:self.myVisitName];
         self.PromptLabel.text = newPromptLabel;
         //newPromptLabel = [newPromptLabel stringByAppendingString:@" on "];
@@ -148,9 +160,114 @@
         [self.ResultsTable reloadData];
         [self postDiseaseID];
         self.mode = 4;
+    }else if (self.mode==4){
+        self.BackButton.hidden = false;
+        //Store Data in symptomSeverityIDForSymptomIDArray
+        NSString *currentSID = [self.symptomArray objectAtIndex:self.currentSymptomIndex];
+        NSLog(@"Symptom Severity Dictionary %@", self.symptomSeverityDescriptionAndID);
+        [self.symptomSeverityIDForSymptomID setObject:[self.symptomSeverityDescriptionAndID objectForKey:selectedCell.detailTextLabel.text] forKey:currentSID];
+        NSLog(@"Symptom Severity Dictionary %@", self.symptomSeverityIDForSymptomID);
+        if (self.currentSymptomIndex<[self.symptomArray count]-1) {
+            self.currentSymptomIndex++;
+            
+            
+            currentSID = [self.symptomArray objectAtIndex:self.currentSymptomIndex];
+            NSString *symptomName;
+            self.testArray = [NSMutableArray new];
+            self.symptomSeverityDescriptionAndID = [NSMutableDictionary new];
+            for (NSDictionary * SS in self.jsonSymptomData) {
+                NSString *symptomID = [SS objectForKey:@"SID"];
+                if ([symptomID isEqualToString:currentSID]) {
+                    NSString *symptomSeverityDescription = [SS objectForKey:@"description"];
+                    NSString *symptomSeverityID = [SS objectForKey:@"SDID"];
+                    symptomName = [SS objectForKey:@"name"];
+                    [self.symptomSeverityDescriptionAndID setObject:symptomSeverityID forKey:symptomSeverityDescription];
+                }
+            }
+            self.PromptLabel.text = [NSString stringWithFormat:@"Please rate the severity level for %@", symptomName];
+            [self.testArray addObjectsFromArray:[self.symptomSeverityDescriptionAndID keysSortedByValueUsingSelector:@selector(localizedStandardCompare:)]];
+            [self.ResultsTable reloadData];
+
+        }else{
+            NSLog(@"%@",self.symptomSeverityIDForSymptomID);
+            [self postSymptomData];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Entry Successfully Recorded"
+                                                            message:nil
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            
+            [self startFresh];
+            //Send data
+        }
     }
 
     
+}
+
+- (IBAction)backPress:(id)sender {
+    self.currentSymptomIndex--;
+    NSString *currentSID = [self.symptomArray objectAtIndex:self.currentSymptomIndex];
+    NSString *symptomName;
+    self.testArray = [NSMutableArray new];
+    self.symptomSeverityDescriptionAndID = [NSMutableDictionary new];
+    for (NSDictionary * SS in self.jsonSymptomData) {
+        NSString *symptomID = [SS objectForKey:@"SID"];
+        if ([symptomID isEqualToString:currentSID]) {
+            NSString *symptomSeverityDescription = [SS objectForKey:@"description"];
+            NSString *symptomSeverityID = [SS objectForKey:@"SDID"];
+            symptomName = [SS objectForKey:@"name"];
+            [self.symptomSeverityDescriptionAndID setObject:symptomSeverityID forKey:symptomSeverityDescription];
+        }
+    }
+    self.PromptLabel.text = [NSString stringWithFormat:@"Please rate the severity level for %@", symptomName];
+    [self.testArray addObjectsFromArray:[self.symptomSeverityDescriptionAndID keysSortedByValueUsingSelector:@selector(localizedStandardCompare:)]];
+    [self.ResultsTable reloadData];
+    
+    
+}
+
+-(void)startFresh{
+    self.BackButton.hidden = true;
+    self.testArray = [NSMutableArray new];
+    self.patientDictionary = [NSMutableDictionary new];
+    self.visitDates = [NSMutableDictionary new];
+    self.diseaseDictionary = [NSMutableDictionary new];
+    self.symptomNameAndID = [NSMutableDictionary new];
+    self.symptomSeverityDescriptionAndID = [NSMutableDictionary new];
+    self.symptomNameAndSeverityDescriptions = [NSMutableDictionary new];
+    self.symptomSeverityIDForSymptomID = [NSMutableDictionary new];
+    self.symptomArray = [NSArray new];
+    self.jsonSymptomData = [NSArray new];
+    self.SearchText.text = @"";
+    self.PromptLabel.text = @"Select a patient";
+    self.SearchText.hidden = false;
+    self.mode=0;
+    NSString *fullURL = @"https://184.72.98.28/record.php";
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [self.PatientWebView loadRequest:requestObj];
+}
+
+-(void)postSymptomData{
+    NSString *bodyData = [NSString stringWithFormat:@"studentid=105&diseaseid=%@&visitdateid=%@&patientid=%@",self.myDiseaseID,self.myVisitID,self.myPatientID];
+    for (NSString *symptomID in [self.symptomSeverityIDForSymptomID allKeys]) {
+        NSString *severity = [self.symptomSeverityIDForSymptomID objectForKey:symptomID];
+        bodyData = [bodyData stringByAppendingString:[NSString stringWithFormat:@"&sy%@=%@",symptomID,severity]];
+    }
+    NSLog(@"Final post request body = %@",bodyData);
+    NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://184.72.98.28/record.php"]];
+    // Set the request's content type to application/x-www-form-urlencoded
+    [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    // Designate the request a POST request and specify its body data
+    [postRequest setHTTPMethod:@"POST"];
+    [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
+    NSError *errorReturned = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&theResponse error:&errorReturned];
+
 }
 -(void)postVisitDate:(NSString *) visitName{
     
@@ -207,7 +324,54 @@
     // Designate the request a POST request and specify its body data
     [postRequest setHTTPMethod:@"POST"];
     [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
-    [_PatientWebView loadRequest:postRequest];
+    NSError *errorReturned = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&theResponse error:&errorReturned];
+    
+    if (errorReturned) {
+        // Handle error.
+    }
+    else
+    {
+        NSError *jsonParsingError = nil;
+        self.jsonSymptomData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers|NSJSONReadingAllowFragments error:&jsonParsingError];
+        if (self.jsonSymptomData.count > 0) {
+            
+            NSDictionary *firstDictionary = [self.jsonSymptomData objectAtIndex:0];
+            NSString * CurrentSymptomID = [firstDictionary objectForKey:@"SID"];
+            self.symptomArray = [self.symptomArray arrayByAddingObject:CurrentSymptomID];
+            for (NSDictionary * SS in self.jsonSymptomData) {
+                NSString *symptomID = [SS objectForKey:@"SID"];
+                if (![symptomID isEqualToString:CurrentSymptomID]) {
+                    self.symptomArray = [self.symptomArray arrayByAddingObject:symptomID];
+                    CurrentSymptomID = symptomID;
+                }
+            }
+            NSLog(@"Symptom IDs %@", self.symptomArray);
+            NSLog(@"Entire Symptom JSON %@", self.jsonSymptomData);
+            self.currentSymptomIndex = 0;
+            NSString *currentSID = [self.symptomArray objectAtIndex:self.currentSymptomIndex];
+            NSString *symptomName;
+            self.testArray = [NSMutableArray new];
+            for (NSDictionary * SS in self.jsonSymptomData) {
+                NSString *symptomID = [SS objectForKey:@"SID"];
+                if ([symptomID isEqualToString:currentSID]) {
+                    NSString *symptomSeverityDescription = [SS objectForKey:@"description"];
+                    NSString *symptomSeverityID = [SS objectForKey:@"SDID"];
+                    symptomName = [SS objectForKey:@"name"];
+                    [self.symptomSeverityDescriptionAndID setObject:symptomSeverityID forKey:symptomSeverityDescription];
+                }
+            }
+            self.PromptLabel.text = [NSString stringWithFormat:@"Please rate the severity level for %@", symptomName];
+            [self.testArray addObjectsFromArray:[self.symptomSeverityDescriptionAndID allKeys]];
+            [self.ResultsTable reloadData];
+
+            
+        }
+        
+        
+    }
+    //[_PatientWebView loadRequest:postRequest];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -222,12 +386,31 @@
     NSLog(@"Table Call");
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.detailTextLabel.font = [[UIFont new] fontWithSize:2];
     if(cell == nil)
     {
-        cell = [UITableViewCell new];
-
+        cell = [[UITableViewCell new] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        
     }
-    cell.textLabel.text = [self.testArray objectAtIndex:indexPath.row];
+    if (self.mode==4) {
+        NSString *s = [NSString stringWithFormat:@"Severity %i", indexPath.row+1];
+        //cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
+        cell.textLabel.text = s;
+        cell.textLabel.textColor = [UIColor colorWithRed:1.0*indexPath.row/[self.testArray count]  green:.8*([self.testArray count]-indexPath.row)/[self.testArray count] blue:0 alpha:1];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
+        
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:1];
+        cell.detailTextLabel.numberOfLines = 10;
+        //cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.detailTextLabel.text = [self.testArray objectAtIndex:indexPath.row];
+        
+        
+       
+    }else{
+        cell = [[UITableViewCell new] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.textLabel.text = [self.testArray objectAtIndex:indexPath.row];
+    }
     return cell;
 }
 
@@ -327,7 +510,7 @@
         NSString * html = [self.PatientWebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
         NSLog(@"%@",html);
     
-        NSArray *result = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&localError];
+        //NSArray *result = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&localError];
         
     }
 

@@ -46,20 +46,56 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="1Tu-y0-7HC"/>
-                                    <constraint firstAttribute="width" constant="292" id="TwR-cu-jdY"/>
+                                    <constraint firstAttribute="width" constant="292" id="Z21-OC-3Fc"/>
                                 </constraints>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TE8-5O-OEn">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="mKb-72-n6V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Start Over">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="StartOver:" destination="2" eventType="touchUpInside" id="kVU-32-snS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z5e-yz-j1S">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="132" id="luF-Qp-33j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backPress:" destination="2" eventType="touchUpInside" id="G0V-si-8mK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.14509804546833038" blue="0.31372550129890442" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="wnL-Uw-PDN" firstAttribute="centerX" secondItem="jup-Gb-K10" secondAttribute="centerX" type="default" id="121-m5-lxm"/>
-                            <constraint firstItem="P71-lc-uqS" firstAttribute="top" secondItem="16" secondAttribute="top" constant="360" id="BcH-Jl-JhF"/>
+                            <constraint firstItem="Cyn-uf-kW8" firstAttribute="top" secondItem="16" secondAttribute="top" constant="89" id="HFg-Us-Tqm"/>
                             <constraint firstAttribute="trailing" secondItem="Cyn-uf-kW8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="HLh-bY-1bP"/>
+                            <constraint firstAttribute="trailing" secondItem="z5e-yz-j1S" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Nx8-iQ-brd"/>
                             <constraint firstItem="wnL-Uw-PDN" firstAttribute="top" secondItem="16" secondAttribute="top" constant="55" id="RSB-X7-8fI"/>
                             <constraint firstItem="P71-lc-uqS" firstAttribute="top" secondItem="5BK-Af-bpG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="V7b-bc-ljQ"/>
+                            <constraint firstItem="TE8-5O-OEn" firstAttribute="top" secondItem="5BK-Af-bpG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="W6k-MV-jaO"/>
                             <constraint firstAttribute="trailing" secondItem="5BK-Af-bpG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="c6M-hA-dsc"/>
+                            <constraint firstItem="z5e-yz-j1S" firstAttribute="baseline" secondItem="TE8-5O-OEn" secondAttribute="baseline" type="default" id="dQn-7f-1dD"/>
                             <constraint firstItem="Cyn-uf-kW8" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gkB-yR-9il"/>
                             <constraint firstItem="5BK-Af-bpG" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="kHi-Pc-gbb"/>
+                            <constraint firstItem="TE8-5O-OEn" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="oV2-DR-Xot"/>
                             <constraint firstAttribute="trailing" secondItem="wnL-Uw-PDN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="qn8-9g-0Pi"/>
                             <constraint firstItem="jup-Gb-K10" firstAttribute="top" secondItem="16" secondAttribute="top" constant="-5" id="tZ3-ez-aN5"/>
                             <constraint firstItem="wnL-Uw-PDN" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="vhc-Il-JiO"/>
@@ -69,6 +105,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Record" image="SearchFunction.png" id="7"/>
                     <connections>
+                        <outlet property="BackButton" destination="z5e-yz-j1S" id="B6i-PP-jaU"/>
                         <outlet property="PatientWebView" destination="P71-lc-uqS" id="tX5-09-ztp"/>
                         <outlet property="PromptLabel" destination="wnL-Uw-PDN" id="qrr-cc-Upq"/>
                         <outlet property="ResultsTable" destination="5BK-Af-bpG" id="kQD-lN-Bf1"/>
@@ -283,9 +320,11 @@
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
-                <relationship kind="action" name="DoneUsing:"/>
                 <relationship kind="action" name="NewTextChange:"/>
+                <relationship kind="action" name="StartOver:"/>
                 <relationship kind="action" name="TextChange:"/>
+                <relationship kind="action" name="backPress:"/>
+                <relationship kind="outlet" name="BackButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="PatientWebView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="PromptLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="ResultsTable" candidateClass="UITableView"/>
