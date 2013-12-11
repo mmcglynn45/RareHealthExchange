@@ -70,7 +70,7 @@
     self.ResultsTable.delegate = self;
     self.ResultsTable.dataSource = self;
     [self.ResultsTable reloadData];
-    NSLog(@"%@",self.testArray);
+    //NSLog@"%@",self.testArray);
     self.PatientWebView.delegate = self;
     NSString *fullURL = @"https://184.72.98.28/record.php";
     NSURL *url = [NSURL URLWithString:fullURL];
@@ -93,7 +93,7 @@
 
 -(void)populateDiseaseDictionary{
     NSString *pageHtml = self.pageHTML;
-    NSLog(@"%@",pageHtml);
+    //NSLog@"%@",pageHtml);
     NSRange range = [pageHtml rangeOfString:@"option value=\""];
     NSString *concat = [pageHtml substringFromIndex:range.location];
     NSRange range2 = [concat rangeOfString:@"\">"];
@@ -112,7 +112,7 @@
         
         
         pageHtml = [pageHtml substringFromIndex:range3.location];
-        NSLog(@"%@",pageHtml);
+        //NSLog@"%@",pageHtml);
         range = [pageHtml rangeOfString:@"option value=\""];
         if (range.location==NSNotFound) {
             break;
@@ -124,7 +124,7 @@
         range3.location+=range.location;
     }
     self.testArray = [NSMutableArray arrayWithArray:[self.diseaseDictionary allKeys]];
-     NSLog(@"%@",_diseaseDictionary);
+     //NSLog@"%@",_diseaseDictionary);
     [self.ResultsTable reloadData];
 
 }
@@ -132,8 +132,8 @@
 {
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     if (self.mode == 1) {
-        //NSLog(@"Selected Cell ID %@",selectedCell.textLabel.text);
-        //NSLog(@"Patient ID = %@", [self.patientDictionary valueForKey:selectedCell.textLabel.text]);
+        ////NSLog@"Selected Cell ID %@",selectedCell.textLabel.text);
+        ////NSLog@"Patient ID = %@", [self.patientDictionary valueForKey:selectedCell.textLabel.text]);
         //self.SearchText.isEnabled = false;
         self.testArray = [NSMutableArray new];
         self.SearchText.text = @"";
@@ -168,9 +168,9 @@
         self.BackButton.hidden = false;
         //Store Data in symptomSeverityIDForSymptomIDArray
         NSString *currentSID = [self.symptomArray objectAtIndex:self.currentSymptomIndex];
-        NSLog(@"Symptom Severity Dictionary %@", self.symptomSeverityDescriptionAndID);
+        //NSLog@"Symptom Severity Dictionary %@", self.symptomSeverityDescriptionAndID);
         [self.symptomSeverityIDForSymptomID setObject:[self.symptomSeverityDescriptionAndID objectForKey:selectedCell.detailTextLabel.text] forKey:currentSID];
-        NSLog(@"Symptom Severity Dictionary %@", self.symptomSeverityIDForSymptomID);
+        //NSLog@"Symptom Severity Dictionary %@", self.symptomSeverityIDForSymptomID);
         if (self.currentSymptomIndex<[self.symptomArray count]-1) {
             self.currentSymptomIndex++;
             
@@ -193,7 +193,7 @@
             [self.ResultsTable reloadData];
 
         }else{
-            NSLog(@"%@",self.symptomSeverityIDForSymptomID);
+            //NSLog@"%@",self.symptomSeverityIDForSymptomID);
             [self postSymptomData];
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Entry Successfully Recorded"
@@ -233,7 +233,7 @@
     
 }
 - (IBAction)dateSelected:(id)sender {
-    //NSLog(@"%@",self.AddDate.titleLabel.text);
+    ////NSLog@"%@",self.AddDate.titleLabel.text);
     if (self.ResultsTable.hidden==false) {
         self.datePicker.hidden = false;
         self.ResultsTable.hidden = true;
@@ -252,7 +252,7 @@
         
        dateToBePosted = [NSString stringWithFormat:@"%@",
                        [df stringFromDate:self.datePicker.date]];
-        NSLog(@"%@",dateToBePosted);
+        //NSLog@"%@",dateToBePosted);
         NSString *bodyData = [NSString stringWithFormat:@"patientID=%@&date=%@",self.myPatientID,dateToBePosted];
         NSString *url = [NSString stringWithFormat:@"https://184.72.98.28/patients.php?id=%@",dateToBePosted];
         NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -297,7 +297,7 @@
         NSString *severity = [self.symptomSeverityIDForSymptomID objectForKey:symptomID];
         bodyData = [bodyData stringByAppendingString:[NSString stringWithFormat:@"&sy%@=%@",symptomID,severity]];
     }
-    NSLog(@"Final post request body = %@",bodyData);
+    //NSLog@"Final post request body = %@",bodyData);
     NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://184.72.98.28/record.php"]];
     // Set the request's content type to application/x-www-form-urlencoded
     [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -311,7 +311,7 @@
 }
 -(void)postVisitDate:(NSString *) visitName{
     
-    //NSLog(@"Login Attempted");
+    ////NSLog@"Login Attempted");
     // Do any additional setup after loading the view.
     self.myVisitID = [self.visitDates objectForKey:visitName];
     self.myVisitName = visitName;
@@ -320,16 +320,16 @@
     javaScript = [javaScript stringByAppendingString:@",'"];
     javaScript = [javaScript stringByAppendingString:visitName];
     javaScript = [javaScript stringByAppendingString:@"')"];
-    NSLog(@"%@",javaScript);
+    //NSLog@"%@",javaScript);
     [self.PatientWebView stringByEvaluatingJavaScriptFromString:javaScript];
     NSString * html = [self.PatientWebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
-    NSLog(@"HTML IS %@",html);
+    //NSLog@"HTML IS %@",html);
 }
 
 
 - (void)postPatientID:(NSString *) patientID{
     
-    //NSLog(@"Login Attempted");
+    ////NSLog@"Login Attempted");
     // Do any additional setup after loading the view.
     _hasBeenDone = false;
     NSString *fullURL = @"https://184.72.98.28/record.php?action=getvisits";
@@ -350,7 +350,7 @@
 
 - (void)postDiseaseID{
     
-    //NSLog(@"Login Attempted");
+    ////NSLog@"Login Attempted");
     // Do any additional setup after loading the view.
     //_hasBeenDone = false;
     //NSString *fullURL = @"https://184.72.98.28/record.php?action=getvisits";
@@ -387,8 +387,8 @@
                     CurrentSymptomID = symptomID;
                 }
             }
-            NSLog(@"Symptom IDs %@", self.symptomArray);
-            NSLog(@"Entire Symptom JSON %@", self.jsonSymptomData);
+            //NSLog@"Symptom IDs %@", self.symptomArray);
+            //NSLog@"Entire Symptom JSON %@", self.jsonSymptomData);
             self.currentSymptomIndex = 0;
             NSString *currentSID = [self.symptomArray objectAtIndex:self.currentSymptomIndex];
             NSString *symptomName;
@@ -416,14 +416,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"Table Call");
+    //NSLog@"Table Call");
     return [self.testArray count];
 
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Table Call");
+    //NSLog@"Table Call");
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.detailTextLabel.font = [[UIFont new] fontWithSize:2];
@@ -462,7 +462,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     //[textField setHidden:YES];
-    NSLog(@"Text Field");
+    //NSLog@"Text Field");
     return YES;
 }
 - (IBAction)DoneUsing:(id)sender {
@@ -474,19 +474,19 @@
     _Authenticated = YES;
     [connection cancel];
     [_PatientWebView loadRequest:_FailedRequest];
-    NSLog(@"Connection Succesful");
+    //NSLog@"Connection Succesful");
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if(self.mode == 0){
         self.pageHTML = [self.PatientWebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
-        NSLog(@"%@",self.pageHTML);
+        //NSLog@"%@",self.pageHTML);
         self.mode = 1;
     }
     if (self.mode==1) {
         self.testArray = [NSMutableArray new];
         NSString * html = [self.PatientWebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
-        NSLog(@"%@",html);
+        //NSLog@"%@",html);
         NSRange range = [html rangeOfString:@"name\":\""];
         NSRange range2 = [html rangeOfString:@"\",\"patientid\":\""];
         NSRange range3 = [html rangeOfString:@"}"];
@@ -494,7 +494,7 @@
             NSRange nameR = [html rangeOfString:@"name\":\""];
             nameR.location=range.location+7;
             nameR.length = range2.location-nameR.location;
-            //NSLog(@"Range Length: %i",nameR.length);
+            ////NSLog@"Range Length: %i",nameR.length);
             NSString *name = [html substringWithRange:nameR];
             
             nameR.location=range2.location+15;
@@ -502,15 +502,15 @@
             
             NSString *patientID = [html substringWithRange:nameR];
             
-            //NSLog(@"Patient ID: %@",patientID);
+            ////NSLog@"Patient ID: %@",patientID);
             [self.testArray addObject:name];
             [self.patientDictionary setObject:patientID forKey:name];
             html = [html substringFromIndex:range3.location+1];
             range = [html rangeOfString:@"name\":\""];
-            //NSLog(@"Range Length: %i",range.length);
+            ////NSLog@"Range Length: %i",range.length);
             range2 = [html rangeOfString:@"\",\"patientid\":\""];
             range3 = [html rangeOfString:@"}"];
-            //NSLog(@"%@",html);
+            ////NSLog@"%@",html);
         }
 
 
@@ -518,7 +518,7 @@
     if(self.mode==2){
         self.testArray = [NSMutableArray new];
         NSString * html = [self.PatientWebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
-        NSLog(@"%@",html);
+        //NSLog@"%@",html);
         NSRange range = [html rangeOfString:@"VDATE\":\""];
         NSRange range2 = [html rangeOfString:@"\",\"VDID\":\""];
         NSRange range3 = [html rangeOfString:@"}"];
@@ -526,29 +526,29 @@
             NSRange dateR = [html rangeOfString:@"name\":\""];
             dateR.location=range.location+8;
             dateR.length = range2.location-dateR.location;
-            //NSLog(@"Range Length: %i",nameR.length);
+            ////NSLog@"Range Length: %i",nameR.length);
             NSString *dateName = [html substringWithRange:dateR];
             
             dateR.location=range2.location+10;
             dateR.length = range3.location-dateR.location-1;
             
             NSString *dateID = [html substringWithRange:dateR];
-            NSLog(@"Date Name: %@",dateName);
-            NSLog(@"Date ID: %@",dateID);
+            //NSLog@"Date Name: %@",dateName);
+            //NSLog@"Date ID: %@",dateID);
             [self.testArray addObject:dateName];
             [self.visitDates setObject:dateID forKey:dateName];
             html = [html substringFromIndex:range3.location+1];
             range = [html rangeOfString:@"VDATE\":\""];
-            //NSLog(@"Range Length: %i",range.length);
+            ////NSLog@"Range Length: %i",range.length);
             range2 = [html rangeOfString:@"\",\"VDID\":\""];
             range3 = [html rangeOfString:@"}"];
-            //NSLog(@"%@",html);
+            ////NSLog@"%@",html);
         }
 
     }
     if (self.mode==4) {
         NSString * html = [self.PatientWebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
-        NSLog(@"%@",html);
+        //NSLog@"%@",html);
     
         //NSArray *result = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&localError];
         
@@ -563,16 +563,17 @@
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
         NSURL* baseURL = [NSURL URLWithString:_BaseRequest];
         if (1) {
-            NSLog(@"trusting connection to host %@", challenge.protectionSpace.host);
+            ////NSLog@"trusting connection to host %@", challenge.protectionSpace.host);
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-        } else
-            NSLog(@"Not trusting connection to host %@", challenge.protectionSpace.host);
+        } else {
+            //NSLog@"Not trusting connection to host %@", challenge.protectionSpace.host);
+        }
     }
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 -(void)patientPostRequest{
-    //NSLog(@"Login Attempted");
+    ////NSLog@"Login Attempted");
     // Do any additional setup after loading the view.
     _hasBeenDone = false;
     self.PatientWebView.delegate = self;

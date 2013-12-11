@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController <UIWebViewDelegate,NSURLConnectionDelegate> {} 
+@interface SecondViewController : UIViewController <UITableViewDelegate,NSURLConnectionDelegate,UIWebViewDelegate,UITableViewDataSource,UITextInput,UITextFieldDelegate> {}
 
 @end
