@@ -152,7 +152,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <constraint firstItem="9h0-lP-cao" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zfe-5F-cA9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Record" image="SearchFunction.png" id="7"/>
+                    <tabBarItem key="tabBarItem" title="Record" image="record.png" id="7"/>
                     <connections>
                         <outlet property="AddDate" destination="9h0-lP-cao" id="or3-Vk-00F"/>
                         <outlet property="BackButton" destination="z5e-yz-j1S" id="B6i-PP-jaU"/>
@@ -186,7 +186,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TvM-SN-gqK">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="254" id="Ann-jm-JcU"/>
+                                    <constraint firstAttribute="height" constant="227" id="iQ8-Sc-ByB"/>
                                 </constraints>
                             </tableView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sN5-Kv-L0V">
@@ -242,25 +242,33 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <action selector="nextPress:" destination="3" eventType="touchUpInside" id="lS2-41-6Fv"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="RHELogo.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="go3-gC-arc">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="Bdv-Rg-3YL"/>
+                                    <constraint firstAttribute="width" constant="196" id="dUq-bf-1oW"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.09803922474" green="0.20392158630000001" blue="0.41176474089999998" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.10402681704360005" green="0.086278893336540652" blue="0.26265545280612246" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="H6l-kY-HrC" firstAttribute="centerX" secondItem="TvM-SN-gqK" secondAttribute="centerX" type="default" id="1or-kx-4q1"/>
                             <constraint firstItem="esX-R3-1vJ" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="130" id="8DU-Xo-fHq"/>
                             <constraint firstItem="JgO-fr-gYC" firstAttribute="top" secondItem="TvM-SN-gqK" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="E00-o6-YcB"/>
                             <constraint firstItem="sN5-Kv-L0V" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="IEK-oP-XbS"/>
-                            <constraint firstItem="TvM-SN-gqK" firstAttribute="centerX" secondItem="H6l-kY-HrC" secondAttribute="centerX" type="default" id="Jgp-Ib-Hgf"/>
+                            <constraint firstItem="go3-gC-arc" firstAttribute="centerX" secondItem="H6l-kY-HrC" secondAttribute="centerX" type="default" id="Ied-43-yVd"/>
+                            <constraint firstItem="H6l-kY-HrC" firstAttribute="top" secondItem="17" secondAttribute="top" constant="63" id="Rdu-t5-8tk"/>
                             <constraint firstItem="esX-R3-1vJ" firstAttribute="top" secondItem="17" secondAttribute="top" constant="141" id="TNY-ZS-dZf"/>
                             <constraint firstItem="JgO-fr-gYC" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Z0F-ZD-xvT"/>
-                            <constraint firstItem="TvM-SN-gqK" firstAttribute="top" secondItem="17" secondAttribute="top" constant="95" id="cGR-fb-TUQ"/>
+                            <constraint firstAttribute="trailing" secondItem="TvM-SN-gqK" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="egh-7N-P3O"/>
                             <constraint firstItem="TvM-SN-gqK" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="faM-Q6-o8u"/>
+                            <constraint firstItem="go3-gC-arc" firstAttribute="top" secondItem="17" secondAttribute="top" constant="-5" id="hm0-fJ-M33"/>
                             <constraint firstAttribute="trailing" secondItem="PMq-gH-yGq" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="og5-Zp-R7Q"/>
                             <constraint firstItem="PMq-gH-yGq" firstAttribute="baseline" secondItem="JgO-fr-gYC" secondAttribute="baseline" type="default" id="pbm-Pa-Lih"/>
                             <constraint firstItem="sN5-Kv-L0V" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="pqD-dt-3BH"/>
-                            <constraint firstAttribute="trailing" secondItem="TvM-SN-gqK" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="rjL-oE-x4g"/>
-                            <constraint firstItem="H6l-kY-HrC" firstAttribute="top" secondItem="sN5-Kv-L0V" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vbe-de-Pta"/>
+                            <constraint firstItem="TvM-SN-gqK" firstAttribute="top" secondItem="17" secondAttribute="top" constant="122" id="qNQ-ck-Y92"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Disease Search" image="second" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Diseases" image="globe.png" id="6"/>
                     <connections>
                         <outlet property="PatientWebView" destination="esX-R3-1vJ" id="wZ7-6Y-1Oi"/>
                         <outlet property="PromptLabel" destination="H6l-kY-HrC" id="Wih-NX-Jao"/>
@@ -400,10 +408,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-776" y="171"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Application Tab Controller-->
         <scene sceneID="15">
             <objects>
-                <tabBarController id="4" sceneMemberID="viewController">
+                <tabBarController id="4" customClass="ApplicationTabController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="X7F-3K-dys"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
@@ -412,8 +420,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="viewControllers" id="26"/>
+                        <segue destination="0VT-dJ-IIT" kind="relationship" relationship="viewControllers" id="AxP-dy-yzj"/>
                         <segue destination="3" kind="relationship" relationship="viewControllers" id="27"/>
+                        <segue destination="2" kind="relationship" relationship="viewControllers" id="26"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -433,23 +442,157 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8HJ-HC-Im1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="599" y="1094"/>
+        </scene>
+        <!--My Page View Controller - First-->
+        <scene sceneID="me0-5H-cfF">
+            <objects>
+                <viewController title="First" id="0VT-dJ-IIT" customClass="MyPageViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6FQ-z5-8y1">
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="RHELogo.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="cHB-V1-x66">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="KFT-NF-1M4"/>
+                                    <constraint firstAttribute="width" constant="196" id="Tiv-AB-SHx"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LgH-bE-PvX">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="225" id="m78-6k-uGL"/>
+                                </constraints>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oGx-jW-rXU">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="DoneUsing:" destination="0VT-dJ-IIT" eventType="touchUpOutside" id="jbE-pm-XWe"/>
+                                    <action selector="NewTextChange:" destination="0VT-dJ-IIT" eventType="editingChanged" id="5O6-qO-eg7"/>
+                                    <action selector="TextChange:" destination="0VT-dJ-IIT" eventType="valueChanged" id="eYx-lT-b8l"/>
+                                    <outlet property="delegate" destination="0VT-dJ-IIT" id="uOg-qp-wci"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="My Page" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="4kU-FM-MIu">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="QJo-i4-1Wz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="10" height="-1"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Restrict to my patients:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="169" translatesAutoresizingMaskIntoConstraints="NO" id="FN0-fm-GiL">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="169" id="6fA-aP-p5y"/>
+                                    <constraint firstAttribute="height" constant="46" id="d6J-w0-K4T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="10" height="-1"/>
+                            </label>
+                            <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guF-Wh-7ia">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="g6Q-Gh-xfW"/>
+                                    <constraint firstAttribute="width" constant="292" id="uRH-3z-SzV"/>
+                                </constraints>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwB-Za-gIW">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="wOy-SR-bzL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Start Over">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="StartOver:" destination="0VT-dJ-IIT" eventType="touchUpInside" id="2MC-vJ-4Kn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZu-6i-Nqc">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="132" id="nQG-lg-eri"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backPress:" destination="0VT-dJ-IIT" eventType="touchUpInside" id="iEf-m5-OHx"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Aqb-uO-VcW">
+                                <rect key="contentStretch" x="0.80000000000000016" y="0.0" width="0.5499999999999996" height="1"/>
+                                <connections>
+                                    <action selector="restrictToMyPatients:" destination="0VT-dJ-IIT" eventType="valueChanged" id="QpG-ND-0jI"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.14509804549999999" blue="0.31372550129999999" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="4kU-FM-MIu" firstAttribute="centerX" secondItem="cHB-V1-x66" secondAttribute="centerX" type="default" id="2oh-nG-Mws"/>
+                            <constraint firstItem="FN0-fm-GiL" firstAttribute="baseline" secondItem="MZu-6i-Nqc" secondAttribute="baseline" type="default" id="3nO-ak-Err"/>
+                            <constraint firstItem="4kU-FM-MIu" firstAttribute="top" secondItem="6FQ-z5-8y1" secondAttribute="top" constant="54" id="6aQ-aj-ZTG"/>
+                            <constraint firstItem="FN0-fm-GiL" firstAttribute="trailing" secondItem="6FQ-z5-8y1" secondAttribute="trailing" type="default" id="D6l-k7-LRK"/>
+                            <constraint firstItem="LgH-bE-PvX" firstAttribute="leading" secondItem="6FQ-z5-8y1" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Fxm-Ji-hNa"/>
+                            <constraint firstItem="cwB-Za-gIW" firstAttribute="leading" secondItem="6FQ-z5-8y1" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GZM-w0-Bkz"/>
+                            <constraint firstItem="oGx-jW-rXU" firstAttribute="leading" secondItem="6FQ-z5-8y1" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Igu-tl-wJ5"/>
+                            <constraint firstAttribute="trailing" secondItem="guF-Wh-7ia" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="NeM-VK-jfO"/>
+                            <constraint firstAttribute="trailing" secondItem="MZu-6i-Nqc" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="QC4-Mi-OcK"/>
+                            <constraint firstItem="cHB-V1-x66" firstAttribute="top" secondItem="6FQ-z5-8y1" secondAttribute="top" constant="-5" id="ZN6-5a-vXy"/>
+                            <constraint firstItem="Aqb-uO-VcW" firstAttribute="centerX" secondItem="MZu-6i-Nqc" secondAttribute="centerX" type="default" id="a1G-2Q-ud0"/>
+                            <constraint firstAttribute="bottom" secondItem="FN0-fm-GiL" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="ab0-Uv-Bfr"/>
+                            <constraint firstItem="guF-Wh-7ia" firstAttribute="top" secondItem="LgH-bE-PvX" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="bH4-DO-Ca5"/>
+                            <constraint firstItem="4kU-FM-MIu" firstAttribute="leading" secondItem="6FQ-z5-8y1" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="csz-HH-3GG"/>
+                            <constraint firstItem="cwB-Za-gIW" firstAttribute="top" secondItem="LgH-bE-PvX" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="g8V-y9-k3l"/>
+                            <constraint firstAttribute="trailing" secondItem="4kU-FM-MIu" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="jp2-CE-oOS"/>
+                            <constraint firstAttribute="trailing" secondItem="LgH-bE-PvX" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="mSL-BM-AlY"/>
+                            <constraint firstItem="MZu-6i-Nqc" firstAttribute="baseline" secondItem="cwB-Za-gIW" secondAttribute="baseline" type="default" id="nvv-QH-b6T"/>
+                            <constraint firstAttribute="trailing" secondItem="oGx-jW-rXU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="o3d-yV-G5A"/>
+                            <constraint firstItem="LgH-bE-PvX" firstAttribute="top" secondItem="oGx-jW-rXU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="zIt-cl-jMG"/>
+                            <constraint firstItem="guF-Wh-7ia" firstAttribute="centerY" secondItem="Aqb-uO-VcW" secondAttribute="centerY" type="default" id="zpM-dV-sTZ"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Patient Scores" image="magnifying_glass.png" id="Jcz-VV-uIe"/>
+                    <connections>
+                        <outlet property="BackButton" destination="MZu-6i-Nqc" id="pX1-aq-nB3"/>
+                        <outlet property="PatientWebView" destination="guF-Wh-7ia" id="72F-Ff-pIb"/>
+                        <outlet property="PromptLabel" destination="4kU-FM-MIu" id="Cxh-1s-1NM"/>
+                        <outlet property="ResultsTable" destination="LgH-bE-PvX" id="ent-mT-gth"/>
+                        <outlet property="SearchText" destination="oGx-jW-rXU" id="ZxZ-9s-yBk"/>
+                        <outlet property="myPatientsSwitch" destination="Aqb-uO-VcW" id="p7u-zi-Lxu"/>
+                        <outlet property="restrictLabel" destination="FN0-fm-GiL" id="Tuc-1c-5mc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nyt-GA-0u5" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="158" y="849"/>
         </scene>
     </scenes>
     <resources>
         <image name="RHELogo.PNG" width="169" height="60"/>
-        <image name="SearchFunction.png" width="67" height="67"/>
-        <image name="second" width="16" height="16"/>
+        <image name="globe.png" width="26" height="26"/>
+        <image name="magnifying_glass.png" width="26" height="26"/>
+        <image name="record.png" width="26" height="26"/>
     </resources>
     <classes>
+        <class className="ApplicationTabController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ApplicationTabController.h"/>
+        </class>
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
-                <relationship kind="action" name="DoneUsing:"/>
-                <relationship kind="action" name="NewTextChange:"/>
-                <relationship kind="action" name="StartOver:"/>
-                <relationship kind="action" name="TextChange:"/>
-                <relationship kind="action" name="backPress:"/>
-                <relationship kind="action" name="dateSelected:"/>
                 <relationship kind="outlet" name="AddDate" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="BackButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="PatientWebView" candidateClass="UIWebView"/>
@@ -462,11 +605,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
-                <relationship kind="action" name="LoginAttempt:"/>
                 <relationship kind="outlet" name="PasswordText" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="PatientWebView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="UsernameText" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="WarningLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MyPageViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyPageViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="BackButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="PatientWebView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="PromptLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ResultsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="SearchText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="myPatientsSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="restrictLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
@@ -475,12 +629,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="SecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
             <relationships>
-                <relationship kind="action" name="DoneUsing:"/>
-                <relationship kind="action" name="NewTextChange:"/>
-                <relationship kind="action" name="StartOver:"/>
-                <relationship kind="action" name="TextChange:"/>
-                <relationship kind="action" name="backPress:"/>
-                <relationship kind="action" name="nextPress:"/>
                 <relationship kind="outlet" name="PatientWebView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="PromptLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="ResultsTable" candidateClass="UITableView"/>

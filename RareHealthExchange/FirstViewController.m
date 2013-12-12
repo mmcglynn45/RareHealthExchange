@@ -433,7 +433,7 @@
         
     }
     if (self.mode==4) {
-        NSString *s = [NSString stringWithFormat:@"Severity %i", indexPath.row+1];
+        NSString *s = [NSString stringWithFormat:@"Severity %i", indexPath.row];
         //cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
         cell.textLabel.text = s;
