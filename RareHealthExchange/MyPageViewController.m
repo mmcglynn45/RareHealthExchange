@@ -46,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *myPatientsSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *restrictLabel;
 @property bool restrictToMyPatients;
+@property NSMutableArray *myPatientsList;
 
 
 @property NSString *pageHTML;
@@ -66,6 +67,8 @@
     // Override point for customization after application launch.
   
     //[self getScores];
+    self.restrictToMyPatients = false;
+    self.myPatientsList = [NSMutableArray new];
     self.highlightRow = 3;
     self.PromptLabel.text = @"Select a patient to view score report for...";
     self.BackButton.hidden = true;
@@ -130,13 +133,48 @@
     NSLog(@"%@",self.highlightForSymptom);
 }
 
+- (IBAction)valueChanged:(id)sender {
+    if (self.restrictToMyPatients){
+        self.restrictToMyPatients = false;
+    }else{
+        self.restrictToMyPatients = true;
+    }
 
-- (IBAction)restrictToMyPatients:(id)sender {
-    self.restrictToMyPatients = self.myPatientsSwitch.selected;
+    if (self.restrictToMyPatients) {
+        [self getMyPatientList];
+    }
+    
 }
 
--(void)getMyPatientList{
+- (IBAction)restrictToMyPatients:(id)sender {
     
+}
+
+
+-(void)getMyPatientList{
+    if ([[self myPatientsList]count]>1) {
+        return;
+    }
+    NSString * URLString = [NSString stringWithFormat:@"%@",@"https://184.72.98.28/students.php"];
+    NSURL *tutorialsUrl = [NSURL URLWithString:URLString];
+    NSData *tutorialsHtmlData = [NSData dataWithContentsOfURL:tutorialsUrl];
+    
+    // 2
+    TFHpple *tutorialsParser = [TFHpple hppleWithHTMLData:tutorialsHtmlData];
+    
+    // 3
+    NSString *tutorialsXpathQueryString = @"//table[@class='bystudent']//tr/td/a";
+    NSArray *tutorialsNodes = [tutorialsParser searchWithXPathQuery:tutorialsXpathQueryString];
+    self.highlightForSymptom = [NSMutableDictionary new];
+    self.highlightDescriptionForSymptom = [NSMutableDictionary new];
+    
+    for (TFHppleElement *element in tutorialsNodes) {
+        if (!([[[[element children]objectAtIndex:0]content] compare:@"View Details"] == 0)) {
+            NSLog(@"%@",[[element firstChild]content]);
+            [self.myPatientsList addObject:[[element firstChild]content]];
+        }
+    }
+
 }
 
 
@@ -293,8 +331,8 @@
     self.symptomSeverityIDForSymptomID = [NSMutableDictionary new];
     self.symptomArray = [NSArray new];
     self.jsonSymptomData = [NSArray new];
-    self.myPatientsSwitch.hidden = true;
-    self.restrictLabel.hidden = true;
+    self.myPatientsSwitch.hidden = false;
+    self.restrictLabel.hidden = false;
     self.SearchText.text = @"";
     self.PromptLabel.text = @"Select a patient to view score report for...";
     self.SearchText.hidden = false;
@@ -559,8 +597,16 @@
             NSString *patientID = [html substringWithRange:nameR];
             
             ////NSLog@"Patient ID: %@",patientID);
-            [self.testArray addObject:name];
-            [self.patientDictionary setObject:patientID forKey:name];
+            bool nameFound = false;
+            for (NSString *patientName in self.myPatientsList) {
+                if ([name compare:patientName]==0) {
+                    nameFound = true;
+                }
+            }
+            if (nameFound||!self.restrictToMyPatients) {
+                [self.testArray addObject:name];
+                [self.patientDictionary setObject:patientID forKey:name];
+            }
             html = [html substringFromIndex:range3.location+1];
             range = [html rangeOfString:@"name\":\""];
             ////NSLog@"Range Length: %i",range.length);

@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "TFHpple.h"
 
 @interface FirstViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *ResultsTable;
@@ -35,6 +36,7 @@
 @property NSString *myVisitID;
 @property NSString *myDiseaseName;
 @property NSString *myDiseaseID;
+@property NSString *myStudentID;
 @property NSArray *symptomArray;
 @property NSArray *jsonSymptomData;
 @property NSUInteger currentSymptomIndex;
@@ -55,6 +57,8 @@
 
 - (void)viewDidLoad
 {
+    [self getStudentID];
+    self.PromptLabel.textColor = [UIColor whiteColor];
     self.BackButton.hidden = true;
     self.mode = 0;
     self.testArray = [NSMutableArray new];
@@ -291,8 +295,40 @@
     [self.PatientWebView loadRequest:requestObj];
 }
 
+-(void)getStudentID{
+    NSString * URLString = [NSString stringWithFormat:@"https://184.72.98.28/record.php"];
+    NSURL *tutorialsUrl = [NSURL URLWithString:URLString];
+    NSData *tutorialsHtmlData = [NSData dataWithContentsOfURL:tutorialsUrl];
+    
+    // 2
+    TFHpple *tutorialsParser = [TFHpple hppleWithHTMLData:tutorialsHtmlData];
+    
+    // 3
+    NSString *tutorialsXpathQueryString = @"//script";
+    NSArray *tutorialsNodes = [tutorialsParser searchWithXPathQuery:tutorialsXpathQueryString];
+    
+    for (TFHppleElement *element in tutorialsNodes) {
+        NSRange range;
+        //NSLog(@"%@ ", [[element firstChild]content]);
+        //NSLog(@"%@ ", element);
+        range = [[[element firstChild]content] rangeOfString:@"var student = "];
+        if (range.location!=NSNotFound) {
+            //NSLog(@"%@ ", [element content]);
+            NSString *studentID = [[[element firstChild]content]substringFromIndex:range.location+range.length];
+            range = [studentID rangeOfString:@";"];
+            studentID = [studentID substringToIndex:range.location];
+            if (studentID!=NULL) {
+                self.myStudentID = studentID;
+            }
+        }
+        
+    }
+    //NSLog(@"%@", self.myStudentID);
+
+}
+
 -(void)postSymptomData{
-    NSString *bodyData = [NSString stringWithFormat:@"studentid=105&diseaseid=%@&visitdateid=%@&patientid=%@",self.myDiseaseID,self.myVisitID,self.myPatientID];
+    NSString *bodyData = [NSString stringWithFormat:@"studentid=%@&diseaseid=%@&visitdateid=%@&patientid=%@",self.myStudentID,self.myDiseaseID,self.myVisitID,self.myPatientID];
     for (NSString *symptomID in [self.symptomSeverityIDForSymptomID allKeys]) {
         NSString *severity = [self.symptomSeverityIDForSymptomID objectForKey:symptomID];
         bodyData = [bodyData stringByAppendingString:[NSString stringWithFormat:@"&sy%@=%@",symptomID,severity]];
