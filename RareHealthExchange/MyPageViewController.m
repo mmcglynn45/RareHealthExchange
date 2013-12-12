@@ -135,6 +135,9 @@
     self.restrictToMyPatients = self.myPatientsSwitch.selected;
 }
 
+-(void)getMyPatientList{
+    
+}
 
 
 -(void)populateDiseaseDictionary{

@@ -323,7 +323,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "46"
          endingLineNumber = "46"
-         landmarkName = "myPatientsLabel"
+         landmarkName = "myPatientsSwitch"
          landmarkType = "19">
       </FileBreakpoint>
    </FileBreakpoints>
