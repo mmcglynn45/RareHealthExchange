@@ -7,6 +7,7 @@
 //
 
 #import "SecondViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SecondViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *ResultsTable;
@@ -56,6 +57,7 @@
 
 - (void)viewDidLoad
 {
+    self.ResultsTable.layer.cornerRadius=5;
     self.mode = 0;
     self.intro = 1;
     self.testArray = [NSMutableArray new];

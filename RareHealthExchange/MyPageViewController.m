@@ -8,6 +8,7 @@
 
 #import "MyPageViewController.h"
 #import "TFHpple.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MyPageViewController ()
 
@@ -62,11 +63,58 @@
     [self patientPostRequest];
 }
 
+- (void) getScoreHistoryForPatientID{
+    NSString * URLString = [NSString stringWithFormat:@"%@id=%@",@"https://184.72.98.28/patients.php?",self.myPatientID];
+    NSURL *tutorialsUrl = [NSURL URLWithString:URLString];
+    NSData *tutorialsHtmlData = [NSData dataWithContentsOfURL:tutorialsUrl];
+    
+    // 2
+    TFHpple *tutorialsParser = [TFHpple hppleWithHTMLData:tutorialsHtmlData];
+    
+    // 3
+    NSString *tutorialsXpathQueryString = @"//table[@class='byvisit toggle']//td";
+    NSArray *tutorialsNodes = [tutorialsParser searchWithXPathQuery:tutorialsXpathQueryString];
+    self.highlightForSymptom = [NSMutableDictionary new];
+    self.highlightDescriptionForSymptom = [NSMutableDictionary new];
+    NSMutableDictionary *scoreHistoryForDate = [NSMutableDictionary new];
+    NSString *lastDate;
+    for (int i = 0; i<[tutorialsNodes count]; i++) {
+        NSRange range;
+        NSString *isScore = [[[tutorialsNodes objectAtIndex:i] firstChild ]content];
+        if ([isScore rangeOfString:@" -"].location!=NSNotFound) {
+            NSLog(@"%@",isScore);
+            if (i<=0) {
+                continue;
+            }
+            if (lastDate) {
+                isScore = [isScore substringToIndex:[isScore rangeOfString:@" "].location];
+                NSString *smallerDate = [lastDate substringFromIndex:[lastDate rangeOfString:@"-"].location+1];
+                NSString *year = [smallerDate substringFromIndex:[smallerDate rangeOfString:@"-"].location+1];
+                NSString *newDate = [NSString stringWithFormat:@"%@-%@",year,lastDate];
+                newDate = [newDate substringToIndex:newDate.length-5];
+                [scoreHistoryForDate setObject:isScore forKey:newDate];
+            }
+        }else if([isScore rangeOfString:@"-"].location!=NSNotFound){
+            lastDate = isScore;
+        }
+        
+    }
+    NSMutableArray *scoreDates = [NSMutableArray arrayWithArray:[scoreHistoryForDate allKeys]];
+    [scoreDates sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSLog(@"%@",scoreDates);
+    
+}
+
 - (void)viewDidLoad
 {
     // Override point for customization after application launch.
   
     //[self getScores];
+    //self.myPatientID = @"213";
+    //[self getScoreHistoryForPatientID];
+    
+    
+    self.ResultsTable.layer.cornerRadius=5;
     self.restrictToMyPatients = false;
     self.myPatientsList = [NSMutableArray new];
     self.highlightRow = 3;

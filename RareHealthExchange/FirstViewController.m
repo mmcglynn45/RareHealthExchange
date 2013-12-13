@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "TFHpple.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface FirstViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *ResultsTable;
@@ -57,6 +58,7 @@
 
 - (void)viewDidLoad
 {
+    self.ResultsTable.layer.cornerRadius=5;
     [self getStudentID];
     self.PromptLabel.textColor = [UIColor whiteColor];
     self.BackButton.hidden = true;
